@@ -1,12 +1,12 @@
 var question = document.getElementById("question");
-var choices = document.getElementsByClassName("choice-text");
+var choices = Array.from(document.getElementsByClassName("choice-text"));
 // console.log(choices)
 
 var currentQuestion = {};
 var availableQuestion = [];
 var score = 0;
 var questionCounter = 0;
-var answer = true;
+var acceptingAnswer = true;
 
 var pointPerQuestion = 1;
 var totalQuestions = 5;
@@ -45,12 +45,12 @@ var questionArray= [
         answer: 1
     },
     {
-        question: "How do you write 'Hello World' in an alert box? ",
-        choice1: "alert("Hello World")",
-        choice2: "msgBox("Hello World")",
-        choice3: "None of the above",
-        choice4: "alertBox("Hello World")",
-        answer: 1
+        question: "Which event occurs when the user clicks on an HTML element? ",
+        choice1: "onmouseclick",
+        choice2: "onclick",
+        choice3: "click",
+        choice4: "onchange",
+        answer: 2
     }
 
 ];
@@ -64,15 +64,20 @@ function startGame() {
     getNewQ();
 }
 
-// startGame()
+startGame()
 
 function getNewQ(){
     questionCounter++;
-    for (var i=0; i<Math.floor(Math.random() * availableQuestion.length); i++){;
-    currentQuestion = availableQuestion[i];
-    question.innerText = currentQuestion.question
-    }
+    var questionIndex = Math.floor(Math.random() * availableQuestion.length);
+    currentQuestion = availableQuestion[questionIndex];
+    question.innerText = currentQuestion.question;
 
-}
+    
+    };
+    choices.forEach(function(choice) {
+        var number = choice.dataset["number"];
+        choice.innerText = currentQuestion["choice" + number];
+    })
 
-startGame()
+
+startGame();

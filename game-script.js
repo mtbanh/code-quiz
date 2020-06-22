@@ -6,7 +6,7 @@ var currentQuestion = {};
 var availableQuestion = [];
 var score = 0;
 var questionCounter = 0;
-var acceptingAnswer = true;
+// var acceptingAnswer = true;
 
 var pointPerQuestion = 1;
 var totalQuestions = 5;
@@ -64,20 +64,43 @@ function startGame() {
     getNewQ();
 }
 
-startGame()
+// startGame()
 
 function getNewQ(){
+    //TODO: need to edit after creating an end page
+    if(availableQuestion.length === 0) {
+        return window.location.assign("end.html");
+    }
+
     questionCounter++;
     var questionIndex = Math.floor(Math.random() * availableQuestion.length);
     currentQuestion = availableQuestion[questionIndex];
     question.innerText = currentQuestion.question;
 
-    
-    };
     choices.forEach(function(choice) {
         var number = choice.dataset["number"];
         choice.innerText = currentQuestion["choice" + number];
-    })
+    });
+
+    availableQuestion.splice(questionIndex, 1);
+
+};
+
+choices.forEach(function(choice){
+    choice.addEventListener("click", function(event){
+        console.log(event.target);
+        var selectedChoice = event.target;
+        var selectedAnswer = selectedChoice.dataset["number"];
+
+        var correctAnswer = "incorrect";
+        if (selectedAnswer == currentQuestion.answer){
+            correctAnswer = "correct";
+        }
+        console.log(correctAnswer)
+
+        getNewQ();
+    });
+});
 
 
 startGame();

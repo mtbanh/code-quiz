@@ -68,7 +68,7 @@ function startGame() {
 }
 
 function startTimer() {
-    var seconds = 10;
+    var seconds = 30;
     var timer = setInterval(function() {
         timerDisplay.innerHTML = seconds;
       seconds --
@@ -83,6 +83,9 @@ function startTimer() {
 function getNewQ() {
     //TODO: need to edit after creating an end page
     if (availableQuestion.length === 0) {
+
+        localStorage.setItem("mostRecentScore", score);
+        
         return window.location.assign("end.html");
     }
 

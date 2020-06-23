@@ -12,7 +12,7 @@ var questionCounter = 0;
 var pointPerQuestion = 1;
 var totalQuestions = 5;
 
-var timer = 30;
+var timeRemaining = 30;
 var questionArray = [
     {
         question: "Javascript can be described as a program that can: ",
@@ -69,10 +69,10 @@ function startGame() {
 }
 
 function startTimer() {
-    var seconds = 30;
+   
     var timer = setInterval(function() {
-        timerDisplay.innerHTML = seconds;
-      seconds --
+        timerDisplay.innerHTML = timeRemaining;
+      timeRemaining --
       if (seconds < 0){
           clearInterval(timer)
           return window.location.assign("end.html")
@@ -117,7 +117,7 @@ choices.forEach(function (choice) {
         }
         else {
             correctAnswer = "Incorrect!";
-            //TODO: how to subtract timer with wrong answer
+            timeRemaining -=5
                 }
         progress.textContent = correctAnswer
 

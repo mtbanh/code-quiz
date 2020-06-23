@@ -17,8 +17,20 @@ function saveHighScore(event){
         name: userName.value,
         score: mostRecentScore
     };
-    localStorage.setItem("score", JSON.stringify(score));
-    var highScores = JSON.parse(localStorage.getItem("score"));
-    highScores.push(score)
+   
+    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
+    highscores.push(score)
 
+
+    localStorage.setItem("score", JSON.stringify(highscores));
+
+    return window.location.assign("highscore.html")
 };
+
+saveHighScore();
+
+//display score in highscore list
+
+function displayScore(){
+    
+}

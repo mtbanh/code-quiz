@@ -12,13 +12,12 @@
     <div class="container">
         <div id="end" class="flex-center flex-column">
             <h1>All Done!</h1>
-
-            <div id="final-score">Score : <p>0</p>
-            </div>
+            <p>Final Score is: </p>
+            <div id="final-score"></div>
 
             <form>
                 <input type="text" name="name" id="name" placeholder="name" />
-                <button type="submit" class="btn" id="saveScore" onclick="saveHighScore(event)">Save</button>
+                <button type="submit" class="btn" id="saveScore" href = "highscore.html" onclick="saveHighScore(event)">Save</button>
             </form>
 
             <script src="end.js"></script>

@@ -57,6 +57,7 @@ var questionArray = [
 
 ];
 
+
 function startGame() {
     questionCounter = 0;
     score = 0;
@@ -83,8 +84,6 @@ function startTimer() {
 function getNewQ() {
     //TODO: need to edit after creating an end page
     if (availableQuestion.length === 0) {
-
-        localStorage.setItem("mostRecentScore", score);
         
         return window.location.assign("end.html");
     }
@@ -107,6 +106,7 @@ choices.forEach(function (choice) {
     choice.addEventListener("click", function (event) {
      
         console.log(event.target);
+        localStorage.setItem("mostRecentScore", score);
 
        
         var selectedChoice = event.target;
@@ -115,6 +115,7 @@ choices.forEach(function (choice) {
         if (selectedAnswer == currentQuestion.answer) {
             correctAnswer = "Correct!";
             score ++
+            console.log(score)
         }
         else {
             correctAnswer = "Incorrect!";
@@ -128,3 +129,5 @@ choices.forEach(function (choice) {
 
 
 startGame();
+
+

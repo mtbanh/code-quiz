@@ -11,7 +11,7 @@ var questionCounter = 0;
 var pointPerQuestion = 1;
 var totalQuestions = 5;
 
-var questionArray= [
+var questionArray = [
     {
         question: "Javascript can be described as a program that can: ",
         choice1: "define the content of the page",
@@ -56,19 +56,19 @@ var questionArray= [
 ];
 
 function startGame() {
-    questionCounter=0;
-    score=0;
+    questionCounter = 0;
+    score = 0;
     availableQuestion = [...questionArray]
     console.log(availableQuestion);
-    
+
     getNewQ();
 }
 
 // startGame()
 
-function getNewQ(){
+function getNewQ() {
     //TODO: need to edit after creating an end page
-    if(availableQuestion.length === 0) {
+    if (availableQuestion.length === 0) {
         return window.location.assign("end.html");
     }
 
@@ -77,7 +77,7 @@ function getNewQ(){
     currentQuestion = availableQuestion[questionIndex];
     question.innerText = currentQuestion.question;
 
-    choices.forEach(function(choice) {
+    choices.forEach(function (choice) {
         var number = choice.dataset["number"];
         choice.innerText = currentQuestion["choice" + number];
     });
@@ -86,17 +86,26 @@ function getNewQ(){
 
 };
 
-choices.forEach(function(choice){
-    choice.addEventListener("click", function(event){
+choices.forEach(function (choice) {
+    choice.addEventListener("click", function (event) {
         console.log(event.target);
         var selectedChoice = event.target;
         var selectedAnswer = selectedChoice.dataset["number"];
 
         var correctAnswer = "incorrect";
-        if (selectedAnswer == currentQuestion.answer){
+        if (selectedAnswer == currentQuestion.answer) {
             correctAnswer = "correct";
         }
-        console.log(correctAnswer)
+        else {
+            correctAnswer = "incorrect";
+        }
+
+        selectedChoice.parentElement.classList.add(correctAnswer);
+
+        setTimeout(function () {
+            selectedChoice.parentElement.classList.remove(correctAnswer);
+            getNewQ();
+        }, 1000);
 
         getNewQ();
     });

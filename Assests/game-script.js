@@ -2,8 +2,7 @@ var question = document.getElementById("question");
 var choices = Array.from(document.getElementsByClassName("choice-text"));
 var progress = document.getElementById("progress")
 var timerDisplay = document.getElementById("time-display")
-// console.log(timer)
-// console.log(choices)
+
 
 var currentQuestion = {};
 var availableQuestion = [];
@@ -13,6 +12,7 @@ var questionCounter = 0;
 var pointPerQuestion = 1;
 var totalQuestions = 5;
 
+var timer = 30;
 var questionArray = [
     {
         question: "Javascript can be described as a program that can: ",
@@ -82,7 +82,6 @@ function startTimer() {
   
 
 function getNewQ() {
-    //TODO: need to edit after creating an end page
     if (availableQuestion.length === 0) {
         localStorage.setItem("mostRecentScore", score)
         return window.location.assign("end.html");
@@ -106,7 +105,6 @@ choices.forEach(function (choice) {
     choice.addEventListener("click", function (event) {
      
         console.log(event.target);
-        localStorage.setItem("mostRecentScore", score);
 
        
         var selectedChoice = event.target;
@@ -119,7 +117,8 @@ choices.forEach(function (choice) {
         }
         else {
             correctAnswer = "Incorrect!";
-        }
+            //TODO: how to subtract timer with wrong answer
+                }
         progress.textContent = correctAnswer
 
 

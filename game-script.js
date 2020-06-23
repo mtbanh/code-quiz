@@ -84,7 +84,7 @@ function startTimer() {
 function getNewQ() {
     //TODO: need to edit after creating an end page
     if (availableQuestion.length === 0) {
-        
+        localStorage.setItem("mostRecentScore", score)
         return window.location.assign("end.html");
     }
 

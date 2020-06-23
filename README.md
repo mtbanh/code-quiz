@@ -35,13 +35,6 @@ The code snippet below execute a response that inform the user if their selectio
 
 ---
 
-## Demo
-
-
-![Deployed Application](deployed-site.gif)
-
----
-
 ## Deployed link
 
 [Live site](https://mtbanh.github.io/code-quiz/)

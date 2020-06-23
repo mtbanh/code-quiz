@@ -1,12 +1,14 @@
 var question = document.getElementById("question");
 var choices = Array.from(document.getElementsByClassName("choice-text"));
+var progress = document.getElementById("progress")
+var timerDisplay = document.getElementById("time-display")
+// console.log(timer)
 // console.log(choices)
 
 var currentQuestion = {};
 var availableQuestion = [];
 var score = 0;
 var questionCounter = 0;
-// var acceptingAnswer = true;
 
 var pointPerQuestion = 1;
 var totalQuestions = 5;
@@ -62,9 +64,21 @@ function startGame() {
     console.log(availableQuestion);
 
     getNewQ();
+    startTimer();
 }
 
-// startGame()
+function startTimer() {
+    var seconds = 10;
+    var timer = setInterval(function() {
+        timerDisplay.innerHTML = seconds;
+      seconds --
+      if (seconds < 0){
+          clearInterval(timer)
+          return window.location.assign("end.html")
+      }
+    }, 1000);
+  }
+  
 
 function getNewQ() {
     //TODO: need to edit after creating an end page
@@ -88,24 +102,22 @@ function getNewQ() {
 
 choices.forEach(function (choice) {
     choice.addEventListener("click", function (event) {
+     
         console.log(event.target);
+
+       
         var selectedChoice = event.target;
         var selectedAnswer = selectedChoice.dataset["number"];
 
-        var correctAnswer = "incorrect";
         if (selectedAnswer == currentQuestion.answer) {
-            correctAnswer = "correct";
+            correctAnswer = "Correct!";
+            score ++
         }
         else {
-            correctAnswer = "incorrect";
+            correctAnswer = "Incorrect!";
         }
+        progress.textContent = correctAnswer
 
-        selectedChoice.parentElement.classList.add(correctAnswer);
-
-        setTimeout(function () {
-            selectedChoice.parentElement.classList.remove(correctAnswer);
-            getNewQ();
-        }, 1000);
 
         getNewQ();
     });
